@@ -1,0 +1,15 @@
+// import the CSS framework
+// Do not use *= require in Sass or your other stylesheets will not be able to access the Bootstrap mixins and variables.
+@import "bootstrap";
+
+.white {
+  color: #FFF !important;
+}
+
+main {
+  margin: 20px;
+}
+
+.multiselect{
+  min-width: 300px;
+}

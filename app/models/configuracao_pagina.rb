@@ -1,0 +1,2 @@
+class ConfiguracaoPagina < ApplicationRecord
+end

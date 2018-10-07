@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Páginas</h2>
+
+<table class="table table-default">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Slug</th>
+    <th>Configuração da Página</th>
+    <th colspan="2">Ações</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @paginas.each do |pagina| %>
+    <%
+      config = ConfiguracaoPagina.where(:id=>pagina.configuracao_pagina_id).first
+    %>
+    <tr>
+      <td><%= pagina.name %></td>
+      <td><%= pagina.slug %></td>
+      <% if !config.blank? %>
+        <td><%= link_to config.title, edit_configuracao_pagina_path(config.id), :class => 'btn-link' %></td>
+      <% else %>
+        <td>-</td>
+      <% end %>
+      <td><%= link_to 'Editar', edit_pagina_path(pagina), :class => "btn btn-info white" %></td>
+      <td><%= link_to 'Remover', pagina, :class => "btn btn-danger white", method: :delete, data: {confirm: 'Você tem certeza?'} %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Página', new_pagina_path, :class => "btn btn-primary white" %>

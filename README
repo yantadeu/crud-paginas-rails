@@ -1,0 +1,12 @@
+Crud - Rails by:Yan
+========================
+
+Criar os models
+
+* rails g scaffold Pagina name:string slug:string
+* rails g scaffold ConfiguracaoPagina title:string description:string keywords:string pagina:references
+* rails g scaffold Tag name:string
+* rails g scaffold PaginaTag pagina:references tag:references
+
+________________________
+

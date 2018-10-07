@@ -1,0 +1,45 @@
+<%= form_with(model: pagina, local: true) do |form| %>
+  <% if pagina.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pagina.errors.count, "error") %> prohibited this pagina from being saved:</h2>
+
+      <ul>
+        <% pagina.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-5 col-sm-12">
+      <div class="field">
+        <%= form.label :name, :class => "control-label" %>
+        <%= form.text_field :name, id: :pagina_name, :class => "form-control", :required => 'required' %>
+      </div>
+
+      <div class="field">
+        <%= form.label :slug, :class => "control-label" %>
+        <%= form.text_field :slug, id: :pagina_slug, :class => "form-control", :required => 'required' %>
+      </div>
+
+      <div class="field">
+        <label for="configuracao_pagina_id">Configuração da Página</label>
+        <%= form.select :configuracao_pagina_id, @configuracoes.map {|page| [page.title, page.id]}, {prompt: 'Selecione uma configuração', label: false}, {class: "form-control", required: true} %>
+      </div>
+
+
+      <div class="field">
+        <label for="tags">Tags</label>
+        <%= form.select :tags, @all_tags.map {|tag| [tag.name, tag.id]}, {}, {name: "tags[]", multiple: "multiple", class: "multiselect"} %>
+      </div>
+
+      <div class="actions">
+        <input type="submit" class="btn btn-success" name="commit" value="Salvar" data-disable-with="Salvar">
+        <%= link_to 'Voltar', paginas_path, :class => 'btn btn-secondary' %>
+
+      </div>
+    </div>
+  </div>
+
+<% end %>

@@ -1,0 +1,41 @@
+<%= form_with(model: configuracao_pagina, local: true) do |form| %>
+  <% if configuracao_pagina.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(configuracao_pagina.errors.count, "error") %> prohibited this configuracao_pagina from being
+        saved:</h2>
+
+      <ul>
+        <% configuracao_pagina.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-5 col-sm-12">
+      <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title, id: :configuracao_pagina_title, :class => "form-control", :required => 'required' %>
+      </div>
+
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_field :description, id: :configuracao_pagina_description, :class => "form-control", :required => 'required' %>
+      </div>
+
+      <div class="field">
+        <%= form.label :keywords %>
+        <%= form.text_field :keywords, id: :configuracao_pagina_keywords, :class => "form-control" %>
+      </div>
+
+<!--      <div class="field">-->
+<!--        <label for="pagina_id">Página (Só estão disponíveis páginas que não tem configuração)</label>-->
+        <%#= form.select :pagina_id, @paginas.map { |page| [page.name, page.id] },{prompt: 'Selecione uma página', label: false}, {class: "form-control", required: true} %>
+<!--      </div>-->
+      <div class="actions">
+        <input type="submit" class="btn btn-success" name="commit" value="Salvar" data-disable-with="Salvar">
+        <%= link_to 'Voltar', paginas_path, :class => 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
+<% end %>

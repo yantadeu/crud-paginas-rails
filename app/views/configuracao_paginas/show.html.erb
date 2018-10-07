@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @configuracao_pagina.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @configuracao_pagina.description %>
+</p>
+
+<p>
+  <strong>Keywords:</strong>
+  <%= @configuracao_pagina.keywords %>
+</p>
+
+<p>
+  <strong>Pagina:</strong>
+  <%= @configuracao_pagina.pagina %>
+</p>
+
+<%= link_to 'Edit', edit_configuracao_pagina_path(@configuracao_pagina) %> |
+<%= link_to 'Back', configuracao_paginas_path %>

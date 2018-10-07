@@ -1,0 +1,2 @@
+module PaginaTagsHelper
+end

@@ -1,0 +1,26 @@
+<%= form_with(model: tag, local: true) do |form| %>
+  <% if tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
+
+      <ul>
+        <% tag.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-5 col-sm-12">
+      <div class="field">
+        <%= form.label :name, :class => "control-label" %>
+        <%= form.text_field :name, id: :tag_name, :class => "form-control", :required => 'required' %>
+      </div>
+
+      <div class="actions">
+        <input type="submit" class="btn btn-success" name="commit" value="Salvar" data-disable-with="Salvar">
+        <%= link_to 'Voltar', tags_path, :class => 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
+<% end %>

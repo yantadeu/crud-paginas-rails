@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Tags</h2>
+
+<table class="table table-default">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="2">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.name %></td>
+        <td><%= link_to 'Editar', edit_tag_path(tag), :class => 'btn btn-info' %></td>
+        <td><%= link_to 'Remover', tag, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Tag', new_tag_path, :class => "btn btn-primary white" %>
