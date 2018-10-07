@@ -48,8 +48,10 @@ class PaginasController < ApplicationController
   # POST /paginas
   # POST /paginas.json
   def create
-    @pagina = Pagina.new(pagina_params)
+    @pagina = Pagina.create(pagina_params)
     tags = params[:tags]
+    puts @pagina.id
+    puts tags
     for id_tag in tags
       if !id_tag.blank?
         @pagina_tag = PaginaTag.create(:pagina_id => @pagina.id, :tag_id => id_tag.to_i)

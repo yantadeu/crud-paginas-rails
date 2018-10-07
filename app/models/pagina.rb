@@ -1,6 +1,6 @@
 class Pagina < ApplicationRecord
-  has_one :configuracao_pagina, dependent: :destroy
-  has_many :tag, dependent: :destroy
+  has_one :configuracao_pagina
+  has_many :tag
   scope :id_not_in_table, -> { where ("id not in (select pagina_id from configuracao_paginas)")}
 
   def get_tags(id)
