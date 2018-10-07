@@ -2,6 +2,8 @@ class PaginasController < ApplicationController
   before_action :set_pagina, only: [:show, :edit, :update, :destroy]
   before_action :load_configurations, only: [:new, :edit]
 
+
+
   def load_configurations
     @configuracoes = ConfiguracaoPagina.all
     @all_tags = Tag.all

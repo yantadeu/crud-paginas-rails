@@ -8,6 +8,7 @@
     <th>Name</th>
     <th>Slug</th>
     <th>Configuração da Página</th>
+    <th>Tags</th>
     <th colspan="2">Ações</th>
   </tr>
   </thead>
@@ -15,7 +16,13 @@
   <tbody>
   <% @paginas.each do |pagina| %>
     <%
-      config = ConfiguracaoPagina.where(:id=>pagina.configuracao_pagina_id).first
+      config = ConfiguracaoPagina.where(:id => pagina.configuracao_pagina_id).first
+      tags = pagina.get_tags(pagina.id)
+      html_tag = '<ul>'
+      for tg in tags
+        html_tag += '<li>' + 'Tag: ' + tg.name + '</li>'
+      end
+      html_tag += '</ul>'
     %>
     <tr>
       <td><%= pagina.name %></td>
@@ -23,7 +30,14 @@
       <% if !config.blank? %>
         <td><%= link_to config.title, edit_configuracao_pagina_path(config.id), :class => 'btn-link' %></td>
       <% else %>
-        <td>-</td>
+        <td>Nenhuma Configuração Definida</td>
+      <% end %>
+      <% if !tags.blank? %>
+        <td>
+          <%= html_tag.html_safe %>
+        </td>
+      <% else %>
+        <td>Nenhuma Tag Definida</td>
       <% end %>
       <td><%= link_to 'Editar', edit_pagina_path(pagina), :class => "btn btn-info white" %></td>
       <td><%= link_to 'Remover', pagina, :class => "btn btn-danger white", method: :delete, data: {confirm: 'Você tem certeza?'} %></td>
