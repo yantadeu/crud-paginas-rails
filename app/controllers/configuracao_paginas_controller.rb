@@ -4,8 +4,15 @@ class ConfiguracaoPaginasController < ApplicationController
   # GET /configuracao_paginas
   # GET /configuracao_paginas.json
   def index
-    per_page =  params[:per_page] || 5
-    @configuracao_paginas = ConfiguracaoPagina.paginate(:page => params[:page], :per_page => per_page)
+    per_page = params[:per_page] || 5
+    @configuracao_paginas = if params[:term]
+                              ConfiguracaoPagina.where('title LIKE ?', "%#{params[:term]}%")
+                                  .or(Pagina.where('description LIKE ?', "%#{params[:term]}%"))
+                                  .or(Pagina.where('keywords LIKE ?', "%#{params[:term]}%"))
+                                  .paginate(:page => params[:page], :per_page => per_page)
+                            else
+                              ConfiguracaoPagina.paginate(:page => params[:page], :per_page => per_page)
+                            end
   end
 
   # GET /configuracao_paginas/1

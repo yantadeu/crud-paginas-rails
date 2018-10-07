@@ -1,7 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <h2>Configurações de Páginas</h2>
-
+<form action="/configuracao_paginas" accept-charset="UTF-8" method="get" name="form" id="form">
+  <div class="input-group mb-3">
+    <input type="text" value="<%= params[:term] %>" class="form-control" placeholder="Pesquisa por texto (title, description ou keywords)" name="term" id="term"/>
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+      <button class="btn btn-outline-warning" type="button" onclick="$('#term').val(''); $('#form').submit()">Limpar</button>
+    </div>
+  </div>
+</form>
 <table  class="table table-default">
   <thead>
     <tr>

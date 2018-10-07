@@ -17,11 +17,15 @@
         </p>
         <p>
           <strong>Configuração de Página:</strong>
-          <%= @configuracao_pagina.title %>
+          <%= link_to @configuracao_pagina.title, configuracao_pagina_path(@configuracao_pagina.id) %>
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          <%= @html_tag.html_safe %>
         </p>
 
-        <%= link_to 'Editar', edit_pagina_path(@pagina), :class => 'btn btn-primary'  %> |
-        <%= link_to 'Voltar', paginas_path, :class => 'btn btn-secondary'  %>
+        <%= link_to 'Editar', edit_pagina_path(@pagina), :class => 'btn btn-primary' %> |
+        <%= link_to 'Voltar', paginas_path, :class => 'btn btn-secondary' %>
       </div>
     </div>
   </div>

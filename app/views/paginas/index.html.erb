@@ -1,7 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h2>Páginas</h2>
+<form action="/paginas" accept-charset="UTF-8" method="get" name="form" id="form">
+  <div class="input-group mb-3">
 
+    <input type="text" value="<%= params[:term] %>" class="form-control" placeholder="Pesquisa por texto (name ou slug)" name="term" id="term"/>
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+      <button class="btn btn-outline-warning" type="button" onclick="$('#term').val(''); $('#form').submit()">Limpar</button>
+    </div>
+  </div>
+</form>
 <table class="table table-default">
   <thead>
   <tr>
@@ -20,7 +29,7 @@
       tags = pagina.get_tags(pagina.id)
       html_tag = '<ul>'
       for tg in tags
-        html_tag += '<li>' + 'Tag: ' + tg.name + '</li>'
+        html_tag += '<li><a href="' + tag_path(tg.id) + '">' + 'Tag: ' + tg.name + '</a></li>'
       end
       html_tag += '</ul>'
     %>
@@ -48,10 +57,10 @@
 </table>
 <div id="pagination-div" class="row crud_pagination">
   <div class="col-md-10 col-sm-6">
-    <%= will_paginate @paginas, :previous_label => 'Anterior', :next_label => 'Próximo'%>
+    <%= will_paginate @paginas, :previous_label => 'Anterior', :next_label => 'Próximo' %>
   </div>
   <div class="col-md-2 col-sm-6">
-    <%= select_tag :per_page, options_for_select([5,10,20,50], params[:per_page].to_i),
+    <%= select_tag :per_page, options_for_select([5, 10, 20, 50], params[:per_page].to_i),
                    :onchange => "if(this.value){window.location='?per_page='+this.value;}", :class => 'form-control' %>
   </div>
 </div>

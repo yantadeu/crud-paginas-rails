@@ -3,7 +3,6 @@ class PaginasController < ApplicationController
   before_action :load_configurations, only: [:new, :edit]
 
 
-
   def load_configurations
     @configuracoes = ConfiguracaoPagina.all
     @all_tags = Tag.all
@@ -12,15 +11,24 @@ class PaginasController < ApplicationController
   # GET /paginas
   # GET /paginas.json
   def index
-    per_page =  params[:per_page] || 5
-    @paginas = Pagina.paginate(:page => params[:page], :per_page => per_page)
+    per_page = params[:per_page] || 5
+    @paginas = if params[:term]
+                 Pagina.where('name LIKE ?', "%#{params[:term]}%").or(Pagina.where('slug LIKE ?', "%#{params[:term]}%")).paginate(:page => params[:page], :per_page => per_page)
+               else
+                 Pagina.paginate(:page => params[:page], :per_page => per_page)
+               end
   end
 
   # GET /paginas/1
   # GET /paginas/1.json
   def show
     @configuracao_pagina = ConfiguracaoPagina.find(@pagina.configuracao_pagina_id)
-    @tags = ConfiguracaoPagina.find(@pagina.configuracao_pagina_id)
+    tags = Tag.tag_pagina(@pagina.id)
+    @html_tag = '<ul>'
+    for tg in tags
+      @html_tag += '<li>' + '<a href="' + tag_path(tg.id) + '">' + tg.name + '</a></li>'
+    end
+    @html_tag += '</ul>'
   end
 
   # GET /paginas/new
@@ -30,7 +38,7 @@ class PaginasController < ApplicationController
 
   # GET /paginas/1/edit
   def edit
-    tags = PaginaTag.where(:pagina_id=>@pagina.id)
+    tags = PaginaTag.where(:pagina_id => @pagina.id)
     @selecteds = []
     for tag in tags
       @selecteds << tag.tag_id
@@ -62,7 +70,7 @@ class PaginasController < ApplicationController
   def update
     respond_to do |format|
       if @pagina.update(pagina_params)
-        @paginas_tag = PaginaTag.where(:pagina_id=>@pagina.id)
+        @paginas_tag = PaginaTag.where(:pagina_id => @pagina.id)
         for page_tag in @paginas_tag
           page_tag.destroy
         end

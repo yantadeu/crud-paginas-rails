@@ -1,12 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <h2>Tags</h2>
+<form action="/tags" accept-charset="UTF-8" method="get" name="form" id="form">
+  <div class="input-group mb-3">
 
+    <input type="text" value="<%= params[:term] %>" class="form-control" placeholder="Pesquisa por texto (name)" name="term" id="term"/>
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+      <button class="btn btn-outline-warning" type="button" onclick="$('#term').val(''); $('#form').submit()">Limpar</button>
+    </div>
+  </div>
+</form>
 <table class="table table-default">
   <thead>
   <tr>
     <th>Name</th>
-    <th colspan="2">Ações</th>
+    <th colspan="3">Ações</th>
   </tr>
   </thead>
 
