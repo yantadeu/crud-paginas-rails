@@ -11,25 +11,28 @@
     </div>
   </div>
 </form>
-<table class="table table-default">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th colspan="3">Ações</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @tags.each do |tag| %>
+<div class="table-responsive">
+  <table class="table table-default">
+    <thead>
     <tr>
-      <td><%= tag.name %></td>
-      <td><%= link_to icon('fa', 'eye', 'Ver', class: 'strong'), tag_path(tag.id), :class => 'btn btn-secondary' %></td>
-      <td><%= link_to icon('fa', 'edit', 'Editar', class: 'strong'), edit_tag_path(tag), :class => 'btn btn-info' %></td>
-      <td><%= link_to icon('fa', 'times', 'Remover', class: 'strong'), tag, method: :delete, data: {confirm: 'Você tem certeza?'}, :class => 'btn btn-danger' %></td>
+      <th>Name</th>
+      <th colspan="3">Ações</th>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.name %></td>
+        <td><%= link_to icon('fa', 'eye', 'Ver', class: 'strong'), tag_path(tag.id), :class => 'btn btn-secondary' %></td>
+        <td><%= link_to icon('fa', 'edit', 'Editar', class: 'strong'), edit_tag_path(tag), :class => 'btn btn-info' %></td>
+        <td><%= link_to icon('fa', 'times', 'Remover', class: 'strong'), tag, method: :delete, data: {confirm: 'Você tem certeza?'}, :class => 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
 <div id="pagination-div" class="row crud_pagination">
   <div class="col-md-10 col-sm-6">
     <%= will_paginate @tags, :previous_label => 'Anterior', :next_label => 'Próximo' %>
