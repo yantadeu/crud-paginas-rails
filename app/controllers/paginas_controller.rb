@@ -25,6 +25,11 @@ class PaginasController < ApplicationController
 
   # GET /paginas/1/edit
   def edit
+    tags = PaginaTag.where(:pagina_id=>@pagina.id)
+    @selecteds = []
+    for tag in tags
+      @selecteds << tag.tag_id
+    end
   end
 
   # POST /paginas

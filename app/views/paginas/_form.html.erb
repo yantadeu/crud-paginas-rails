@@ -31,7 +31,7 @@
 
       <div class="field">
         <label for="tags">Tags</label>
-        <%= form.select :tags, @all_tags.map {|tag| [tag.name, tag.id]}, {}, {name: "tags[]", multiple: "multiple", class: "multiselect"} %>
+        <%= form.select :tags, options_from_collection_for_select(@all_tags, :id, :name, @selecteds), {}, {name: "tags[]", multiple: "multiple", class: "multiselect"} %>
       </div>
 
       <div class="actions">
