@@ -1,9 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+<div class="col-md-12">
+  <p id="notice"><%= notice %></p>
+<div class="card">
+<div class="card-header">
+  <h4>Mostrando Tag #<%= @tag.id %></h4>
+</div>
+  <div class="card-body">
+  <p>
+    <strong>Name:</strong>
+    <%= @tag.name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @tag.name %>
-</p>
+  <%= link_to 'Editar', edit_tag_path(@tag), :class => 'btn btn-primary'  %> |
+  <%= link_to 'Voltar', tags_path, :class => 'btn btn-secondary'  %>
+</div>
+</div>
+</div>
+</div>
 
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
-<%= link_to 'Back', tags_path %>

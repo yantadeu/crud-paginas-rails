@@ -19,13 +19,22 @@
         <td><%= configuracao_pagina.title %></td>
         <td><%= configuracao_pagina.description %></td>
         <td><%= configuracao_pagina.keywords %></td>
-<!--        <td><%#= link_to configuracao_pagina.pagina.name, edit_pagina_path(configuracao_pagina.pagina), :class => 'btn-link' %></td>-->
-        <td><%= link_to 'Editar', edit_configuracao_pagina_path(configuracao_pagina), :class => 'btn btn-info white' %></td>
-        <td><%= link_to 'Remover', configuracao_pagina, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => 'btn btn-danger white' %></td>
+        <td><%= link_to icon('fa', 'eye', 'Ver', class: 'strong'), configuracao_pagina_path(configuracao_pagina.id), :class => 'btn btn-secondary' %></td>
+        <td><%= link_to icon('fa', 'edit', 'Editar', class: 'strong'), edit_configuracao_pagina_path(configuracao_pagina), :class => 'btn btn-info white' %></td>
+        <td><%= link_to icon('fa', 'times', 'Remover', class: 'strong'), configuracao_pagina, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => 'btn btn-danger white' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<div id="pagination-div" class="row crud_pagination">
+  <div class="col-md-10 col-sm-6" >
+    <%= will_paginate @configuracao_paginas, :previous_label => 'Anterior', :next_label => 'Próximo' %>
+  </div>
+  <div class="col-md-2 col-sm-6">
+    <%= select_tag :per_page, options_for_select([5,10,20,50], params[:per_page].to_i),
+                   :onchange => "if(this.value){window.location='?per_page='+this.value;}", :class => 'form-control' %>
+  </div>
+</div>
 
 <br>
 

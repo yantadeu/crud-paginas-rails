@@ -12,12 +12,15 @@ class PaginasController < ApplicationController
   # GET /paginas
   # GET /paginas.json
   def index
-    @paginas = Pagina.all
+    per_page =  params[:per_page] || 5
+    @paginas = Pagina.paginate(:page => params[:page], :per_page => per_page)
   end
 
   # GET /paginas/1
   # GET /paginas/1.json
   def show
+    @configuracao_pagina = ConfiguracaoPagina.find(@pagina.configuracao_pagina_id)
+    @tags = ConfiguracaoPagina.find(@pagina.configuracao_pagina_id)
   end
 
   # GET /paginas/new

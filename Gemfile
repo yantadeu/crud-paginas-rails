@@ -27,7 +27,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.1.3'
 gem 'high_voltage'
 gem 'jquery-rails'
+gem 'will_paginate'
 gem 'bootstrap-multiselect-rails'
+gem 'font-awesome-sass', '~> 5.3.1'
 group :development do
   gem 'better_errors'
   gem 'rails_layout'

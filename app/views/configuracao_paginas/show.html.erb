@@ -1,24 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12">
+    <p id="notice"><%= notice %></p>
+    <div class="card">
+      <div class="card-header">
+        <h4>Mostrando Configuração de Página #<%= @configuracao_pagina.id %></h4>
+      </div>
+      <div class="card-body">
+        <p>
+          <strong>Title:</strong>
+          <%= @configuracao_pagina.title %>
+        </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @configuracao_pagina.title %>
-</p>
+        <p>
+          <strong>Description:</strong>
+          <%= @configuracao_pagina.description %>
+        </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @configuracao_pagina.description %>
-</p>
+        <p>
+          <strong>Keywords:</strong>
+          <%= @configuracao_pagina.keywords %>
+        </p>
 
-<p>
-  <strong>Keywords:</strong>
-  <%= @configuracao_pagina.keywords %>
-</p>
 
-<p>
-  <strong>Pagina:</strong>
-  <%= @configuracao_pagina.pagina %>
-</p>
+        <%= link_to 'Editar', edit_configuracao_pagina_path(@configuracao_pagina), :class => 'btn btn-primary'  %> |
+        <%= link_to 'Voltar', configuracao_paginas_path, :class => 'btn btn-secondary'  %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_configuracao_pagina_path(@configuracao_pagina) %> |
-<%= link_to 'Back', configuracao_paginas_path %>
