@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20181006232829) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "configuracao_paginas", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20181006232829) do
   end
 
   create_table "pagina_tags", force: :cascade do |t|
-    t.integer "pagina_id"
-    t.integer "tag_id"
+    t.bigint "pagina_id"
+    t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pagina_id"], name: "index_pagina_tags_on_pagina_id"
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 20181006232829) do
   create_table "paginas", force: :cascade do |t|
     t.string "name"
     t.string "slug"
-    t.integer "configuracao_pagina_id"
+    t.bigint "configuracao_pagina_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["configuracao_pagina_id"], name: "index_paginas_on_configuracao_pagina_id"
@@ -44,4 +47,7 @@ ActiveRecord::Schema.define(version: 20181006232829) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "pagina_tags", "paginas"
+  add_foreign_key "pagina_tags", "tags"
+  add_foreign_key "paginas", "configuracao_paginas"
 end
