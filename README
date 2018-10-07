@@ -1,12 +1,17 @@
-Crud - Rails by:Yan
-========================
+Crud - Páginas
+====================================================
+Este CRUD deverá gerenciar Páginas Web que são composta pela model página, configuração da página e tag da página. Uma página poderá ter uma configuração e N tags.
 
-Criar os models
+* A página terá os atributos nome e slug;
+* A configuração da página deverá conter o título, descrição, palavras chaves em uma tabela diferente relacionada a tabela pages;
+* A página poderá ter várias tags e a tag com atributo nome;
+Deve ser possível pela interface adicionar, deletar, visualizar e editar uma página, onde na visualização devem ser listada as tags desta página e sua configuração;
+* À uma página pode ser adicionada N tags;
+* Em uma próxima feature usaremos a tag para marcar outra entidade;
+* Deverá ser possível adicionar, visualizar, editar e deletar uma tag;
+=====================================
+Sequência Lógica
 
-* rails g scaffold Pagina name:string slug:string
-* rails g scaffold ConfiguracaoPagina title:string description:string keywords:string pagina:references
-* rails g scaffold Tag name:string
-* rails g scaffold PaginaTag pagina:references tag:references
-
-________________________
-
+* Cadastre Tag
+* Cadastre Configuração de Página
+* Cadastre Página
