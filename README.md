@@ -15,3 +15,5 @@ Sequência Lógica
 * Cadastre Tag
 * Cadastre Configuração de Página
 * Cadastre Página
+
+Demonstração no Heroku: https://crud-paginas-rails-yan.herokuapp.com/
