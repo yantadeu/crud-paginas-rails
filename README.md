@@ -9,7 +9,7 @@ Deve ser possível pela interface adicionar, deletar, visualizar e editar uma p�
 * À uma página pode ser adicionada N tags;
 * Em uma próxima feature usaremos a tag para marcar outra entidade;
 * Deverá ser possível adicionar, visualizar, editar e deletar uma tag;
-=====================================
+
 Sequência Lógica
 
 * Cadastre Tag
